@@ -1,0 +1,48 @@
+﻿@model hemSida.Models.ProductModel
+
+@Html.Partial("~/Views/Shared/_Navigation.cshtml", null)
+
+<div class="container" style="margin-top: 50px;">
+
+    <h1>@Model.DisplayName</h1>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="imgAbt">
+                <img class="img-responsive img-rounded" style="width: 100%" src="img/me.jpg" />
+            </div>
+
+            <button onclick="javaBass.Api.searchBack()" type="button" class="btn btn-primary btn-sm" style="margin-top:4px;margin-bottom:4px">Back</button>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <h2>@Model.DisplayName</h2>
+            <p><small>@Model.ProductDesc</small>  </p>
+            <br />
+            <h3>@Model.ProductPrice kr<small> / st</small></h3>
+            <br />
+            <br />
+
+            @if (Model.results.Count != 0)
+            {
+                <h5>Tagar associerade med @Model.DisplayName</h5>
+            }
+
+            <div class="list-group">
+                @{
+                    bool a = true;
+                    foreach (var item in Model.results)
+                    {
+                        <button onclick="javaBass.Api.search('#@item')" type="button" class="btn btn-@((a)?"primary":"success") btn-sm" style="margin-left: 1px;margin-top: 1px;margin-right: 1px;margin-bottom: 1px;">@item</button>
+                        a = !a;
+                    }
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+

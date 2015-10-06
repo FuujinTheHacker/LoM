@@ -1,0 +1,42 @@
+﻿@model hemSida.Models.AccountCreationModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/Content/login.css">
+    <link rel="stylesheet" href="~/Content/start.css">
+</head>
+<body>
+
+    @if (Model.myResult == hemSida.Models.ActivationResult.NOTFOUND)
+    {
+        @Html.Partial("~/Views/Shared/_ActivationResult_NOTFOUND.cshtml", null)
+    }
+    else if (Model.myResult == hemSida.Models.ActivationResult.FOUND || Model.myResult == hemSida.Models.ActivationResult.ACTIVATIONFAILED)
+    {
+        @Html.Partial("~/Views/Shared/_ActivationResult_FOUND_ACTIVATIONFAILED.cshtml", Model)
+    }
+    else if (Model.myResult == hemSida.Models.ActivationResult.ACTIVATIONSUCCESS)
+    {
+        @Html.Partial("~/Views/Shared/_ActivationResult_ACTIVATIONSUCCESS.cshtml", Model)
+    }
+    
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/common.js"></script>
+
+</body>
+</html>

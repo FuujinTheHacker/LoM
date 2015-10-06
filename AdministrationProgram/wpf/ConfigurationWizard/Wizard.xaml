@@ -1,0 +1,44 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:AdministrationProgram.wpf.ConfigurationWizard" x:Class="AdministrationProgram.wpf.ConfigurationWizard.Wizard"
+        Title="Configuration Wizard" 
+        WindowStartupLocation="CenterScreen"
+        Height="390"
+        Width="500"
+        >
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" HorizontalAlignment="Left" x:Name="_topLebel" Content="Configuration Wizard"/>
+
+        <Separator Grid.Row="1" Margin="5,0"/>
+
+        <Grid Grid.Row="2">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="0.5*" />
+            </Grid.RowDefinitions>
+
+            <Frame Margin="5,0,5,0" Grid.Row="1" Navigated="_frame_Navigated" x:Name="_frame" NavigationUIVisibility="Hidden" />
+
+        </Grid>
+
+        <Separator Grid.Row="3" Margin="5,0"/>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right"  >
+            <Button Click="Button_Click" x:Name="_priButton" Content="Previous" IsEnabled="False" Margin="5" />
+            <Button Click="Button_Click" x:Name="_nextButten" Content="Next" Margin="5"  />
+        </StackPanel>
+
+    </Grid>
+</Window>

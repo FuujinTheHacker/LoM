@@ -1,0 +1,76 @@
+﻿<Window xmlns:wpf="clr-namespace:AdministrationProgram.wpf"  x:Class="AdministrationProgram.wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Administration Program" Height="500" Width="710.826"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Closing="Window_Closing"
+        >
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Menu Grid.Row="0" Grid.ColumnSpan="2">
+            <MenuItem Header="File">
+                <MenuItem Checked="Button_Click" Unchecked="Button_Click" Name="advancedMode_" Header="Advanced Mode" IsCheckable="True" IsChecked="False" ></MenuItem>
+            </MenuItem>
+
+            <MenuItem x:Name="selectDatabase" Header="Select Database">
+                <MenuItem Click="MenuItem_Click" IsCheckable="True" Tag="ActivationKey" Header="ActivationKey"/>
+                <MenuItem Click="MenuItem_Click" IsCheckable="True" Tag="Log" Header="Log"/>
+                <MenuItem Click="MenuItem_Click" IsCheckable="True" Tag="Link" Header="Link"/>
+                <MenuItem Click="MenuItem_Click" IsCheckable="True" Tag="Product_has_TagTyp" Header="Product_has_TagTyp"/>
+                <MenuItem Click="MenuItem_Click" IsCheckable="True" Tag="ProductAssociatedFile" Header="ProductAssociatedFile"/>
+                <MenuItem Click="MenuItem_Click" IsCheckable="True" Tag="TagTyp" Header="TagTyp"/>
+                <MenuItem Click="MenuItem_Click" IsCheckable="True" Tag="Product" Header="Product"/>
+                <MenuItem Click="MenuItem_Click" IsCheckable="True" Tag="User" Header="User"/>
+            </MenuItem>
+            <MenuItem x:Name="menuItemAddUser" Header="Add User" Click="Button_Click"/>
+            <Button x:Name="repeatButton" Click="Button_Click">
+                <Path Data="F1 M 20.8105,7.09424L 24.2607,33.1177L 15.9209,29.6714C 14.2021,33.7583 13.251,38.2466 13.251,42.9595C 13.251,61.9429 28.6406,77.3267 47.6201,77.3267C 53.2109,77.3267 58.4854,75.9829 63.1504,73.6147L 69.4775,79.9419C 63.0732,83.7349 55.6025,85.9204 47.6201,85.9204C 23.8936,85.9204 4.6582,66.688 4.6582,42.9595C 4.6582,37.0845 5.84277,31.4888 7.98047,26.3901L 0,23.0913L 20.8105,7.09424 Z M 47.6191,0.000488281C 71.3457,0.000488281 90.5791,19.2368 90.5791,42.9604C 90.5791,47.8813 89.748,52.6089 88.2227,57.0112L 96.0176,60.3472L 75.0029,76.0845L 71.8828,50.0181L 80.2969,53.6187C 81.3936,50.2642 81.9883,46.6821 81.9883,42.9604C 81.9883,23.9771 66.5986,8.59326 47.6191,8.59326C 43.3438,8.59326 39.2559,9.38037 35.4814,10.8052L 28.9404,4.26318C 34.5898,1.53076 40.9238,0.000488281 47.6191,0.000488281 Z " Fill="Black" RenderTransformOrigin="0.5,0.5" >
+                    <Path.LayoutTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.2" ScaleY="0.2"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.LayoutTransform>
+                </Path>
+            </Button>
+        </Menu>
+
+        <DataGrid AutoGeneratingColumn="dataGrid_AutoGeneratingColumn" x:Name="dataGrid" Grid.Column="0" Grid.Row="1" />
+        <GridSplitter Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Width="4" HorizontalAlignment="Left"/>
+
+        <Grid x:Name="grid" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Margin="4,0,0,0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="AUTO"/>
+            </Grid.RowDefinitions>
+
+            <wpf:DataEditControl Grid.Row="0" x:Name="dataEditControl" />
+
+            <WrapPanel HorizontalAlignment="Center" Grid.Row="1" Orientation="Horizontal">
+                <Button BorderBrush="Green" BorderThickness="3" Padding="3" Click="Button_Click" x:Name="acceptButton" HorizontalAlignment="Center" Margin="3" Content="Accept All Changes" IsEnabled="False"/>
+                <Button BorderBrush="Red" BorderThickness="3" Padding="3" Click="Button_Click" x:Name="rejectButton" HorizontalAlignment="Center" Margin="3" Content="Reject All Changes" IsEnabled="False"/>
+            </WrapPanel>
+
+        </Grid>
+
+        <GridSplitter Grid.Column="0"  Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Height="4" ResizeDirection="Rows" />
+        <RichTextBox Visibility="Collapsed" IsReadOnly="True" Grid.Column="0"  Grid.Row="2" Margin="0,4,0,0"/>
+
+    </Grid>
+</Window>

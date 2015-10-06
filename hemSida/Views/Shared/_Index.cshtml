@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/Content/login.css">
+    <link rel="stylesheet" href="~/Content/start.css">
+</head>
+<body>
+
+    <div id="Modal1" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <button id="Modal1HeaderB" type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+                    <h4 id="Modal1Title" class="modal-title">Modal title</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p id="Modal1BodyP">One fine body&hellip;</p>
+                    <img id="Modal1Ajaxloader" src="~/Content/ajaxloader.gif" style="margin-right:auto;margin-left:auto;display:block;">
+                </div>
+
+                <div class="modal-footer">
+                    <button id="Modal1Button" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Modal2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Glömt lösenord</h4>
+                </div>
+
+                <div class="modal-body">
+                    <h4>Har du glömt bort ditt lösenord?</h4>
+                    <h4>Kontakta oss så hjälper vi dig att återskapa ditt konto.</h4>
+                    <br />
+                    <h5>Mail: <a href="mailto:ljusochmiljo@gmail.com?Subject=Borttappat%20Lösenord">ljusochmiljo@gmail.com</a></h5>
+                    <h5>Telefon: +46(0)31-3331232</h5>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Modal3">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" >Vilka är vi?</h4>
+                </div>
+
+                <div class="modal-body">
+                    
+                    <h5>Vi är Ljus &amp; Miljö AB - Din ljuskälla i den mörka entitet som är internet!</h5>
+                    <br />
+                    <h4>Hur når du oss?</h4>
+                    <h5>Du hittar oss på Lärdomsgatan 3 - Göteborg</h5>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d8526.471663651777!2d11.936666!3d57.70596100000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464ff34fe0459e63%3A0x2ac4477e5c50301d!2sL%C3%A4rdomsgatan%2C+417+56+G%C3%B6teborg%2C+Sverige!5e0!3m2!1ssv!2sse!4v1417109896648" width="400" height="300" frameborder="0" style="border:0"></iframe>
+                    <h5>Mail: <a href="mailto:ljusochmiljo@gmail.com?Subject=Borttappat%20Lösenord">ljusochmiljo@gmail.com</a></h5>
+                    <h5>Telefon: +46(0)31-3331232</h5>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Stäng</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="divTarget" data-init-target="@ViewBag.initTarget"></div>
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/common.js"></script>
+
+</body>
+</html>

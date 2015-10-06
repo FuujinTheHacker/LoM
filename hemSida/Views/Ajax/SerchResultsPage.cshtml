@@ -1,0 +1,139 @@
+﻿@model hemSida.Models.SerchResultsModel
+
+@Html.Partial("~/Views/Shared/_Navigation.cshtml", null)
+
+<div class="container" style="margin-top: 70px;">
+
+    <h2>@Html.Raw((Model.SerchResultsList.Count == 0) ? "Din sökning matchade inga objekt" : "Hittade " + Model.SerchResultsList.Count + " objekt")</h2>
+
+    <div class="row">
+        <div class="col-lg-7 col-md-6">
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-btn">
+                    <button onclick="javaBass.Api.triggerSearch();" class="btn btn-default" type="button">Sök</button>
+                </span>
+                <form id="searchTextForm">
+                    <input id="searchTextBox" type="text" value="@Html.Raw(Model.searchText)" class="form-control" autofocus>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="btn-group" style="margin-bottom: 20px;">
+                @if (Model.searchPrisSort)
+                { 
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Sortera efter pris <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a id="SorteraTogel" href="">Sortera efter namn </a></li>
+                    </ul>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Sortera efter namn <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a id="SorteraTogel" href="">Sortera efter pris</a></li>
+                    </ul>
+                }
+            </div>
+
+            <div class="btn-group" style="margin-bottom: 20px;">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    Produkter per sida - @Model.searchAntal <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a id="SearchAntalA15" href="">15</a></li>
+                    <li><a id="SearchAntalA24" href="">24</a></li>
+                    <li><a id="SearchAntalA48" href="">48</a></li>
+                    <li><a id="SearchAntalA75" href="">75</a></li>
+                    <li><a id="SearchAntalA105" href="">105</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    @{
+    int index = 0;
+    int antal = 0;
+    if (Model.SerchResultsList.Count != 0) 
+    {
+        foreach (var item in Model.SerchResultsList.Skip(Model.searchSida * Model.searchAntal))
+    {
+        if (index == 0)
+        {
+            @Html.Raw("<div class=\"row\" style=\"margin-bottom: 3px;\">");
+        }
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img class="img-responsive img-rounded" style="width: 100%" data-src="@item.productPrice">
+                <div class="caption">
+                    <h3>@item.displayName</h3>
+                    <p>@item.productPrice KR</p>
+                    <p><a onclick="javaBass.SerchResults.openProdukt('@item.displayName')" class="btn btn-primary" role="button">Mer info</a></p>
+                </div>
+            </div>
+        </div>
+        index++;
+        antal++;
+        if (index == 3)
+        {
+            @Html.Raw("</div>");
+            index = 0;
+        }
+        if (antal == Model.searchAntal)
+        {
+            break;
+        }
+    }
+    if (index != 0)
+    {
+    @Html.Raw("</div>");
+    }
+    }
+    }
+
+
+
+
+                @if (Model.antalsidor != 1)
+                {
+                    <nav>
+                        <ul id="PavPagination" class="pagination">
+                            @if (Model.searchSida != 0)
+                            {
+                                <li><a style="cursor:pointer" data-target="@Html.Raw(Model.searchSida-1)"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+                            }
+                            else
+                            {
+                                <li class="disabled"><a data-target="" href=""><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+                            }
+                            
+
+                            @for (int i = 0; i < Model.antalsidor; i++)
+                            {
+                                if (i == Model.searchSida)
+                                {
+                                    <li class="active"><a data-target="">@i<span class="sr-only">(current)</span></a></li>
+                                }
+                                else
+                                {
+                                    <li><a style="cursor:pointer" data-target="@i">@i</a></li>
+                                }
+                            }
+
+                            @if (Model.searchSida + 1 != Model.antalsidor)
+                            {
+                                <li><a style="cursor:pointer" data-target="@Html.Raw(Model.searchSida+1)"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+                            }
+                            else
+                            {
+                                <li class="disabled"><a data-target="" href=""><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+                            }
+
+                        </ul>
+                    </nav>
+                }
+</div>
